@@ -7,13 +7,15 @@ data = df.values
 A = 500
 B = 500
 W = 5
-N = 10000
+N = 5000
 M = 1.5
 rng = np.random.default_rng()
-plt.figure(figsize=(6, 6))
+fig = plt.figure(figsize=(6, 6))
 xl = []
 xr = []
 y = []
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2, 2, 2)
 for i in range(N):
     xp = rng.uniform(0, len(data[0]))
     yp = rng.uniform(0, len(data))
@@ -23,9 +25,12 @@ for i in range(N):
     xl.append( (- 0.5 * W * (A + zp) + B * xp) / (A + B - zp))
     xr.append( (+ 0.5 * W * (A + zp) + B * xp) / (A + B - zp))
     y.append( B * yp / (A + B - zp))
-plt.scatter(xl, y, color="#EE7800", s=1)
-plt.scatter(xr, y, color="#00FFFF", s=1)
-plt.xlim(-0.25*len(data[0]), 0.25*len(data[0]))
-plt.ylim(-0.25*len(data), 0.25*len(data))
-plt.savefig("anagrif.png")
+    
+ax1.scatter(xl, y, color="#000000", s=1)
+ax2.scatter(xr, y, color="#000000", s=1)
+ax1.set_xlim(-0.25*len(data[0]), 0.25*len(data[0]))
+ax1.set_ylim(-0.25*len(data), 0.25*len(data))
+ax2.set_xlim(-0.25*len(data[0]), 0.25*len(data[0]))
+ax2.set_ylim(-0.25*len(data), 0.25*len(data))
+plt.savefig("RDS.png")
 plt.show()
