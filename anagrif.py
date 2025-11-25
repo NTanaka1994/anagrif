@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv("picture.csv")
 data = df.values
-A = 500
-B = 500
-W = 5
-N = 10000
-M = 1.5
+A = 600
+B = 600
+W = 20
+N = 5000
+M = 1
 rng = np.random.default_rng()
 plt.figure(figsize=(6, 6))
 xl = []
@@ -20,8 +20,8 @@ for i in range(N):
     zp = M * data[int(yp)][int(xp)]
     xp = xp - len(data[0]) / 2
     yp = yp - len(data) / 2
-    xl.append( (- 0.5 * W * (A + zp) + B * xp) / (A + B - zp))
-    xr.append( (+ 0.5 * W * (A + zp) + B * xp) / (A + B - zp))
+    xl.append((+A*W+B*xp+W*zp)/(A+B-zp))
+    xr.append((+A*W+B*xp-W*zp)/(A+B-zp))
     y.append( B * yp / (A + B - zp))
 plt.scatter(xl, y, color="#EE7800", s=1)
 plt.scatter(xr, y, color="#00FFFF", s=1)
